@@ -1,0 +1,14 @@
+﻿<#@ include     file="Header.ttinclude"         #>
+<#@ include     file="Utilities.ttinclude"      #>
+<#@ include     file="DB.ttinclude"             #>
+
+<#
+    var Config = new Config();
+
+    Config.Tables = new List<BWCIM_Table> {
+            new BWCIM_Table("Customer"),
+            new BWCIM_Table("Info")
+    };
+
+    Config.Database = new BWCIM_Database("Lab");
+#>

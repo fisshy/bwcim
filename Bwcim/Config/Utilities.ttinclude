@@ -1,0 +1,36 @@
+﻿<#+ 
+
+    public class BWCIM_Table
+    {
+        public BWCIM_Table(string name)
+        {
+            Name = name;
+        }
+
+        public string Name { get; set; }
+    }
+
+    public class BWCIM_Database
+    {
+        public BWCIM_Database(string name)
+        {
+            Name = name;
+        }
+
+        public string Name { get; set; }
+    }
+
+
+    public class Config
+    {
+        public BWCIM_Database Database { get; set; }
+        public List<BWCIM_Table> Tables { get; set; }
+    }
+
+#>
+
+
+
+
+
+

@@ -1,0 +1,88 @@
+﻿<#@ template    debug="false" hostspecific="true" language="C#" inherits="Helpers.Sql" #>
+<#@ include     file="..\Config\Config.ttinclude" #>
+<#@ include     file="$(SolutionDir)Helpers\MultipleOutputHelper.ttinclude" #>
+<#@ assembly    name="$(TargetDir)\Helpers.dll" #>
+<#@ output extension=".js" #>
+<#
+    var manager = Manager.Create(Host, GenerationEnvironment); 
+#>
+<#
+    var database = new Database(server, Config.Database.Name);
+
+    foreach(var tbl in Config.Tables)
+    {
+        var table = new Table(database, tbl.Name);
+        table.Refresh();
+#>
+<#
+    var serviceName = table.Name + "Service";
+    var controller  = table.Name + "Cntrl";
+    var primary     = GetPrimaryKey(table);
+    manager.StartNewFile(table.Name + ".js");
+#>
+angular.module('bwcim')
+.factory('<#=serviceName #>', ['$resource', function($resource) {
+    return $resource('/api/<#=table.Name#>/:id', { id: '@<#=primary.Name#>'});
+}])
+.controller('<#=controller #>', ['$scope', '$rootScope', '<#=serviceName#>',  function($scope, $rootScope, <#=serviceName#>) {
+    $rootScope.setActiveLink('<#=table.Name#>');
+    $scope.<#=table.Name#>s = <#=serviceName#>.query();
+}]);
+<#
+    manager.EndBlock();
+#>
+<#
+    }
+#>
+angular.module('bwcim', ['ngResource', 'ngRoute'])
+    .run(['$rootScope', function($rootScope) {
+        $rootScope.links = {
+<#
+    var first = true;
+    foreach(var tbl in Config.Tables)
+    {
+        var table       = new Table(database, tbl.Name);
+        table.Refresh();
+        var urlName     = table.Name.ToLower() + "s";
+        var isLast      = Config.Tables.IndexOf(tbl) == Config.Tables.Count  - 1;
+#>
+            '<#=table.Name#>' : { name : '<#=table.Name#>',  url : '/<#=urlName#>', active : <#=first ? "true" : "false"#>}<#=isLast ? "" : ","#>
+<#
+        first = false;
+    }           
+#>
+        };
+    
+        $rootScope.setActiveLink = function(name) {
+            angular.forEach($rootScope.links, function(value, key) {
+                value.active = key === name;
+            });
+        };
+    }])
+    .config(['$routeProvider', function($routeProvider) {
+        $routeProvider.
+<#
+    first = true;
+    foreach(var tbl in Config.Tables)
+    {
+        var table       = new Table(database, tbl.Name);
+        table.Refresh();
+        var controller  = table.Name + "Cntrl";
+        var template    = table.Name;
+        var url         = table.Name.ToLower() + "s";
+#>
+            when('/<#=first ? "" : url#>', {
+                templateUrl : '/template/<#=template#>',
+                controller  : '<#=controller#>'
+            }).
+<#
+        first = false;
+    }
+#>
+            otherwise({
+                redirectTo : '/'
+            });
+}]);
+<#
+    manager.Process(true); 
+#>

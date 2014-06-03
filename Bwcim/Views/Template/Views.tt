@@ -1,0 +1,33 @@
+﻿<#@ template    debug="false" hostspecific="true" language="C#" inherits="Helpers.Html" #>
+<#@ include     file="..\..\Config\Config.ttinclude" #>
+<#@ include     file="$(SolutionDir)Helpers\MultipleOutputHelper.ttinclude" #>
+<#@ assembly    name="$(TargetDir)\Helpers.dll" #>
+<#
+    var manager = Manager.Create(Host, GenerationEnvironment); 
+#>
+<#
+
+    var database = new Database(server, Config.Database.Name);
+
+    foreach(var tbl in Config.Tables)
+    {
+        var table = new Table(database, tbl.Name);
+        table.Refresh();
+#>
+<# manager.StartNewFile(table.Name + ".cshtml"); #>
+<div class="row <#=table.Name #> table-responsive"> 
+    <table class="table">
+        <#= RenderTableHeader(table.Columns) #>
+        <#= RenderTableBodyWithAngularInput(table.Columns, table.Name) #>
+    <table>
+    <#= RenderAngularSaveButton() #>
+<div>
+<# 
+    manager.EndBlock(); 
+#>
+<#
+    }
+#>
+<#
+    manager.Process(true); 
+#>

@@ -1,0 +1,14 @@
+﻿<#
+    
+    Server server = new Server(@".\SQLEXPRESS");
+    
+    Dictionary<string, string> MappedDataTypes = new Dictionary<string, string>
+    {
+        {"nvarchar" , "string"  }   ,
+        {"bigint"   , "long"    }   ,
+        {"int"      , "int"     }   ,
+        {"bit"      , "bool"    }   ,
+        {"datetime" , "DateTime"}
+    };
+
+#>

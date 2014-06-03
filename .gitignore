@@ -172,3 +172,20 @@ UpgradeLog*.htm
 
 # Microsoft Fakes
 FakesAssemblies/
+
+
+Bwcim/Controllers/*
+!Bwcim/Controllers/ApiController.tt
+!Bwcim/Controllers/HomeController.cs
+!Bwcim/Controllers/TemplateController.cs
+
+
+Bwcim/Models/*
+!Bwcim/Models/DataContext.cs
+!Bwcim/Models/Models.tt
+
+Bwcim/Views/Template/*
+!Bwcim/Views/Template/Views.tt
+
+Bwcim/Scripts/*
+!Bwcim/Scripts/App.tt
