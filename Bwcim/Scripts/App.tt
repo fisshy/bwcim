@@ -27,6 +27,9 @@ angular.module('bwcim')
 .controller('<#=controller #>', ['$scope', '$rootScope', '<#=serviceName#>',  function($scope, $rootScope, <#=serviceName#>) {
     $rootScope.setActiveLink('<#=table.Name#>');
     $scope.<#=table.Name#>s = <#=serviceName#>.query();
+    $scope.saveColumn = function(model) {
+        model.$save();
+    };
 }]);
 <#
     manager.EndBlock();
@@ -34,8 +37,9 @@ angular.module('bwcim')
 <#
     }
 #>
-angular.module('bwcim', ['ngResource', 'ngRoute'])
-    .run(['$rootScope', function($rootScope) {
+angular.module('bwcim', ['ngResource', 'ngRoute', 'ngAnimate', 'angular-loading-bar', 'xeditable'])
+    .run(['$rootScope', 'editableOptions', function($rootScope, editableOptions) {
+        editableOptions.theme = 'bs3';
         $rootScope.links = {
 <#
     var first = true;
