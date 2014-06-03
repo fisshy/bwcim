@@ -214,8 +214,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\loading-bar.css" />
+    <Content Include="Content\xeditable.css" />
     <Content Include="favicon.ico" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\App.js">
@@ -229,6 +231,8 @@
     <Content Include="Scripts\Info.js">
       <DependentUpon>App.tt</DependentUpon>
     </Content>
+    <Content Include="Scripts\libs\angular-loading-bar.js" />
+    <Content Include="Scripts\libs\angular-xeditable.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -246,9 +250,9 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <Content Include="Models\Models.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
