@@ -25,5 +25,6 @@ Because writing code is mainstream
 - Advanced configuration
 - Support table valued functions from SQL
 - Support custom CRUD stored procedures.
+- And MUCH more to come.
 
 More detailed documentation to come.
