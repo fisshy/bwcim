@@ -22,6 +22,7 @@ Because writing code is mainstream
 
 ## Todo
 - Write better Config.ttinclude
+- Write detailed setup documentation when config is fixed.
 - Advanced configuration
 - Support table valued functions from SQL
 - Support custom CRUD stored procedures.
