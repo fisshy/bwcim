@@ -3,6 +3,11 @@ Bwcim
 
 Because writing code is mainstream
 
-Generates SQL CRUD, C# CRUD(Using dapper.net), REST api, JavaScript(Using Angular.js) based on a Table in a Database.
+## Generates 
+    SQL CRUD 
+    C# CRUD
+    REST api
+    JavaScript(Using Angular.js)
+
 
 More detailed documentation to come.
