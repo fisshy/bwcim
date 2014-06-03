@@ -23,7 +23,7 @@ Because writing code is mainstream
 ## Todo
 - Write better Config.ttinclude
 - Advanced configuration
-- Support table valued functions from SQL and custom CRUD stored procedures.
--  
+- Support table valued functions from SQL
+- Support custom CRUD stored procedures.
 
 More detailed documentation to come.
